@@ -204,7 +204,7 @@ extern "C" void TIM1_UP_TIM10_IRQHandler(void)
         controller.adc3_raw = ADC3->DR;
         controller.theta_elec = spi.GetElecPosition();
         controller.theta_mech = (1.0f / GR) * spi.GetMechPosition();
-        ontroller->theta_mech -= int(controller->theta_mech / 6.28) * 6.28;
+        controller->theta_mech -= int(controller->theta_mech / 6.28) * 6.28;
         controller.dtheta_mech = (1.0f / GR) * spi.GetMechVelocity();
         controller.dtheta_elec = spi.GetElecVelocity();
         controller.v_bus = 0.95f * controller.v_bus + 0.05f * ((float)controller.adc3_raw) * V_SCALE; // filter the dc link voltage measurement
