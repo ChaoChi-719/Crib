@@ -242,7 +242,7 @@ void torque_control(ControllerStruct *controller)
 
     if (controller->mode == 0)
     {
-        controller->p_goal += int(controller->theta_mech / 6.28) * 6.28;
+        // controller->p_goal += int(controller->theta_mech / 6.28) * 6.28;
         if ((abs(controller->p_goal - controller->theta_mech) < temp) || controller->flag == 1)
         {
             error = controller->p_goal - controller->theta_mech;
