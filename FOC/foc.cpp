@@ -242,6 +242,10 @@ void torque_control(ControllerStruct *controller)
 
     if (controller->mode == 0)
     {
+        if (controller->p_goal < controller->theta_mech)
+        {
+            controller->p_goal += 6.28;
+        }
         if ((abs(controller->p_goal - controller->theta_mech) < temp) || controller->flag == 1)
         {
             error = controller->p_goal - controller->theta_mech;
