@@ -68,7 +68,7 @@ void update_cmd(ControllerStruct *controller, float time)
         controller->p_goal = controller->p_cmd + int(controller->theta_mech / 6.28) * 6.28;
         if (controller->p_cmd <= 0 && int(controller->theta_mech / 6.28) > 0) //馬達旋轉大於1圈後, 尋找就近相對位置
                 controller->p_goal += 6.28;
-        else if (controller->p_cmd >= 0 && int(controller->theta_mech / 6.28) < 0)
+        else if (controller->p_cmd > 0 && int(controller->theta_mech / 6.28) < 0)
                 controller->p_goal -= 6.28;
         if (controller->p_goal<controller->theta_mech &&int(controller->theta_mech / 6.28)> 0) //維持正轉至目標點
                 controller->p_goal += 6.28;
