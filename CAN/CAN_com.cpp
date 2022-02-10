@@ -68,7 +68,7 @@ void update_cmd(ControllerStruct *controller, float time)
         controller->p_goal = controller->p_cmd;
         controller->p_des = controller->theta_mech;
         controller->v_cmd = (controller->p_goal - controller->theta_mech) / time;
-        // controller->abs_v_cmd = (controller->p_goal * 6) / time;
+        controller->abs_v_cmd = (controller->p_goal) / time;
         controller->delta_theta = controller->v_cmd / F_TORQUE;
         controller->flag = 0;
 }

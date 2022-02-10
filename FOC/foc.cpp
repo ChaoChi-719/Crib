@@ -256,7 +256,7 @@ void torque_control(ControllerStruct *controller)
     }
     else if (controller->mode == 1)
     {
-        // controller->delta_theta = controller->abs_v_cmd / F_TORQUE;
+        controller->delta_theta = controller->abs_v_cmd / F_TORQUE;
         controller->p_des += controller->delta_theta;
         error = controller->p_des - controller->theta_mech;
     }
