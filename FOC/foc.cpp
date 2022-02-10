@@ -249,10 +249,10 @@ void torque_control(ControllerStruct *controller)
         }
         else
         {
-            if (controller->p_goal < controller->theta_mech)
-            {
-                controller->p_goal += 6.28;
-            }
+            // if (controller->p_goal < controller->theta_mech)
+            // {
+            //     controller->p_goal += 6.28;
+            // }
             controller->p_des += controller->delta_theta;
             error = controller->p_des - controller->theta_mech;
         }
