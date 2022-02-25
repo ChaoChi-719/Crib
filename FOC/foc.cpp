@@ -250,6 +250,7 @@ void torque_control(ControllerStruct *controller)
         }
         else
         {
+            printf("OK");
             controller->p_des += controller->delta_theta;
             error = controller->p_des - controller->theta_mech;
         }
