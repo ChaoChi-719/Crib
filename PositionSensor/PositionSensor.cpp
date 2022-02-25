@@ -58,7 +58,6 @@ void PositionSensorAM5147::Sample(float dt)
     else if (elec > 2.0f * PI)
         elec -= 2.0f * PI;
     ElecPosition = elec;
-    printf("position: %f,MechOffset:%f,ElecPosition:%f\n", position, MechOffset, ElecPosition);
 
     float vel;
     // if(modPosition<.1f && oldModPosition>6.1f){
