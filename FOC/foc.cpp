@@ -251,7 +251,6 @@ void torque_control(ControllerStruct *controller)
         {
             controller->p_des += controller->delta_theta;
             error = controller->p_des - controller->theta_mech;
-            printf("theta_mech: %f,p_goal:%f,delta_theta:%f\n", controller->theta_mech, controller->p_goal, controller->v_cmd);
         }
     }
     else if (controller->mode == 1)
