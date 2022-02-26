@@ -65,20 +65,20 @@ void unpack_cmd(CANMessage msg, ControllerStruct *controller)
  */
 void update_cmd(ControllerStruct *controller, float time)
 {
-        controller->p_goal = controller->p_cmd; //+ int(controller->theta_mech / 6.28) * 6.28;
-        // if (controller->p_cmd <= 0 && int(controller->theta_mech / 6.28) > 0) //馬達旋轉大於1圈後, 尋找就近相對位置
-        //         controller->p_goal += 6.28;
-        // else if (controller->p_cmd > 0 && int(controller->theta_mech / 6.28) < 0)
-        //         controller->p_goal -= 6.28;
-        // if (controller->p_goal<controller->theta_mech &&int(controller->theta_mech / 6.28)> 0) //維持正轉至目標點
-        //         controller->p_goal += 6.28;
-        // else if (controller->p_goal > controller->theta_mech && int(controller->theta_mech / 6.28) < 0) //維持反轉至目標點
-        //         controller->p_goal -= 6.28;
+        controller->p_goal = controller->p_cmd+ int(controller->theta_mech / 6.28) * 6.28;
+        if (controller->p_cmd <= 0 && int(controller->theta_mech / 6.28) > 0) //馬達旋轉大於1圈後, 尋找就近相對位置
+                controller->p_goal += 6.28;
+        else if (controller->p_cmd > 0 && int(controller->theta_mech / 6.28) < 0)
+                controller->p_goal -= 6.28;
+        if (controller->p_goal<controller->theta_mech &&int(controller->theta_mech / 6.28)> 0) //維持正轉至目標點
+                controller->p_goal += 6.28;
+        else if (controller->p_goal > controller->theta_mech && int(controller->theta_mech / 6.28) < 0) //維持反轉至目標點
+                controller->p_goal -= 6.28;
         controller->p_des = controller->theta_mech;
         controller->v_cmd = (controller->p_goal - controller->theta_mech) / time;
         controller->abs_v_cmd = (controller->p_cmd) / time;
         controller->delta_theta = controller->v_cmd / F_TORQUE;
-        // printf("theta_mech: %f,p_goal:%f,delta_theta:%f\n", controller->theta_mech, controller->p_goal, controller->v_cmd);
+        printf("theta_mech: %f,p_goal:%f,delta_theta:%f\n", controller->theta_mech, controller->p_goal, controller->v_cmd);
         controller->flag = 0;
 }
 
